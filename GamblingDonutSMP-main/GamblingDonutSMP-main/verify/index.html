@@ -3,17 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Verify Account · Donut-Bet</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,700;12..96,800&family=Geist:wght@300;400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    <title>Verify Account · PowerFlip</title>
+    <script src="https://tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cloudflare.com">
+    <link rel="preconnect" href="https://googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link href="https://googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,700;12..96,800&family=Geist:wght@300;400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../assets/styles.css">
 </head>
 <body class="flex min-h-screen">
 
     <aside class="sidebar">
+        <div>
             <a href="../index.html" class="brand">
                 <div class="brand-text">
                     <span class="brand-title">
@@ -21,10 +22,6 @@
                     </span>
                     <span class="brand-sub">PowerSMP · Casino</span>
                 </div>
-            </a>
-
-          </a>
-        
             </a>
 
             <p class="nav-label">Games</p>
@@ -37,8 +34,8 @@
 
             <p class="nav-label">Wallet</p>
             <nav class="space-y-1">
-                <a href="index.html" class="nav-btn active"><i class="fa-solid fa-shield-check"></i><span>Verify Account</span><span class="nav-dot dot-amber"></span></a>
-                <a href="../deposit/index.html" class="nav-btn"><i class="fa-solid fa-arrow-down-to-bracket"></i><span>Deposit</span></a>
+                <a href="index.html" class="nav-btn active"><i class="fa-solid fa-shield-halved"></i><span>Verify Account</span><span class="nav-dot dot-amber"></span></a>
+                <a href="../deposit/index.html" class="nav-btn"><i class="fa-solid fa-right-to-bracket"></i><span>Deposit</span></a>
                 <a href="../withdraw/index.html" class="nav-btn"><i class="fa-solid fa-arrow-up-from-bracket"></i><span>Withdraw</span></a>
             </nav>
         </div>
@@ -53,14 +50,14 @@
         <header class="topbar">
             <div class="topbar-left">
                 <h1 class="page-title">Verify Account</h1>
-                <p class="page-sub">Link your DonutSMP Minecraft account to access games and the cashier.</p>
+                <p class="page-sub">Link your PowerSMP Minecraft account to access games and the cashier.</p>
             </div>
             <div class="topbar-right">
                 <div class="balance-chip">
                     <span class="balance-icon"><i class="fa-solid fa-coins"></i></span>
                     <div>
                         <p class="balance-label">Balance</p>
-                        <p class="balance-value">— · <span class="balance-unit">DSMP</span></p>
+                        <p class="balance-value">— · <span class="balance-unit">PSMP</span></p>
                     </div>
                 </div>
             </div>
@@ -71,12 +68,12 @@
             <div class="page-hero">
                 <span class="eyebrow"><i class="fa-solid fa-circle"></i> Step 1 · Authentication</span>
                 <h2>Verify your Minecraft identity.</h2>
-                <p>Enter your in-game name and complete the in-game challenge from the DonutSMP server. Verification is one-time and links your wallet to your IGN.</p>
+                <p>Enter your in-game name and complete the in-game challenge from the PowerSMP server. Verification is one-time and links your wallet to your IGN.</p>
             </div>
 
             <div class="alert">
                 <i class="fa-solid fa-circle-info"></i>
-                <p><strong>Heads up:</strong> Donut-Bet will <em>never</em> ask for your Mojang or Microsoft password. Verification happens entirely in-game via private message to our bot account.</p>
+                <p><strong>Heads up:</strong> PowerFlip will <em>never</em> ask for your Mojang or Microsoft password. Verification happens entirely in-game via private message to our bot account.</p>
             </div>
 
             <div class="two-col">
@@ -101,8 +98,8 @@
                         <div class="step">
                             <div class="step-num">1</div>
                             <div class="step-body">
-                                <h4>Join the DonutSMP server</h4>
-                                <p>Connect to <span class="mono" style="color:var(--gold)">donutsmp.net</span> with the Java client (1.20+).</p>
+                                <h4>Join the PowerSMP server</h4>
+                                <p>Connect to <span class="mono" style="color:var(--gold)">powersmp.net</span> with the Java client (1.20+).</p>
                             </div>
                         </div>
 
@@ -110,9 +107,9 @@
                             <div class="step-num">2</div>
                             <div class="step-body">
                                 <h4>Send your verification code in-game</h4>
-                                <p>Run the command below to message the Donut-Bet bot. You must be on the same server.</p>
+                                <p>Run the command below to message the PowerFlip bot. You must be on the same server.</p>
                                 <div class="code-block" data-testid="verify-command-block">
-                                    <span id="verify-command">/msg DonutBetBot verify ABCD-1234</span>
+                                    <span id="verify-command">/msg PowerFlipBot verify ABCD-1234</span>
                                     <button class="code-copy" onclick="copyText('verify-command', this)" data-testid="copy-verify-command">
                                         <i class="fa-regular fa-copy"></i> Copy
                                     </button>
@@ -164,11 +161,11 @@
                     <h3 class="section-title" style="margin-top:6px;"><i class="fa-solid fa-server"></i> Bot details</h3>
                     <div class="info-row">
                         <span class="info-key">Server</span>
-                        <span class="info-val">donutsmp.net</span>
+                        <span class="info-val">powersmp.net</span>
                     </div>
                     <div class="info-row">
                         <span class="info-key">Bot IGN</span>
-                        <span class="info-val">DonutBetBot</span>
+                        <span class="info-val">PowerFlipBot</span>
                     </div>
                     <div class="info-row">
                         <span class="info-key">Required rank</span>
@@ -183,7 +180,7 @@
             </div>
 
             <footer class="page-footer">
-                <p>© 2026 Donut-Bet · Not affiliated with Mojang AB. 18+ play responsibly.</p>
+                <p>© 2026 PowerFlip · Not affiliated with Mojang AB. 18+ play responsibly.</p>
                 <div class="footer-links">
                     <a href="../index.html">Games</a>
                     <a href="../deposit/index.html">Deposit</a>
@@ -204,7 +201,7 @@
             const chars = "ABCDEFGHJKMNPQRSTUVWXYZ23456789";
             let code = "";
             for (let i=0;i<8;i++){ code += chars[Math.floor(Math.random()*chars.length)]; if(i===3) code += "-"; }
-            document.getElementById('verify-command').innerText = `/msg DonutBetBot verify ${code}`;
+            document.getElementById('verify-command').innerText = `/msg PowerFlipBot verify ${code}`;
             document.getElementById('code-stage').style.display = 'block';
 
             let total = 600;
