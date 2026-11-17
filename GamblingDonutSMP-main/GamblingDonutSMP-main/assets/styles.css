@@ -63,36 +63,53 @@ h1,h2,h3,h4{ font-family: 'Bricolage Grotesque', sans-serif; letter-spacing:-0.0
     background: linear-gradient(180deg, #0a0e1c 0%, #08091a 100%);
     border-right: 1px solid var(--border-soft);
   .brand{
-    display:flex; align-items:center;
+ .brand{
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 4px 8px;
     margin-bottom: 32px;
-    text-decoration:none;
+    text-decoration: none;
 }
-.brand-text{ display:flex; flex-direction:column; line-height:1.1; }
+.brand-mark{
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    background: var(--gold-soft);
+    border: 1px solid rgba(74, 222, 128, 0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+.brand-mark img{
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+}
+.brand-text{
+    display: flex;
+    flex-direction: column;
+    line-height: 1.1;
+}
 .brand-title{
-    font-family:'Bricolage Grotesque', sans-serif;
-    font-weight:800; font-size:22px;
-    letter-spacing: 0.02em;
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 800;
+    font-size: 20px;
+    letter-spacing: -0.02em;
     display: inline-flex;
     align-items: center;
 }
 .brand-green{ color: #4ade80; }
-.brand-white{ color: #ffffff; font-style: italic; margin-left: 2px; }
-.brand-dice{
-    height: 22px;
-    width: auto;
-    margin: 0 2px;
-    display: inline-block;
-}
+.brand-white{ color: #ffffff; font-style: italic; margin-left: 1px; }
 .brand-sub{
-    font-size:10px; color:var(--text-dim);
-    text-transform:uppercase; letter-spacing:.18em; margin-top:4px;
+    font-size: 10px;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: .18em;
+    margin-top: 3px;
 }
-   
-    letter-spacing:-0.02em;
-}
-.brand-sub{
-    font-size:10px; color:var(--text-dim);
-    text-transform:uppercase; letter-spacing:.18em; margin-top:2px;
+     
 }
 
 .nav-label{
