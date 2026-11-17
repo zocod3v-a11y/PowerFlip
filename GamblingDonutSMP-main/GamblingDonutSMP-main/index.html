@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donut-Bet · Provably Fair Casino</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,700;12..96,800&family=Geist:wght@300;400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body class="flex min-h-screen">
+
+    <aside class="sidebar">
+        <div>
+            <a href="index.html" class="brand">
+                <span class="brand-mark"><i class="fa-solid fa-cube"></i></span>
+                <div class="brand-text">
+                    <span class="brand-title">Donut-Bet</span>
+                    <span class="brand-sub">DonutSMP · Casino</span>
+                </div>
+            </a>
+
+            <p class="nav-label">Games</p>
+            <nav class="space-y-1">
+                <button onclick="switchTab('mines', event)" class="nav-btn active" data-tab="mines">
+                    <i class="fa-solid fa-land-mine-on"></i><span>Mines</span>
+                    <span class="nav-pill">×24</span>
+                </button>
+                <button onclick="switchTab('towers', event)" class="nav-btn" data-tab="towers">
+                    <i class="fa-solid fa-gopuram"></i><span>Towers</span>
+                </button>
+                <button onclick="switchTab('dice', event)" class="nav-btn" data-tab="dice">
+                    <i class="fa-solid fa-dice"></i><span>Dice</span>
+                </button>
+                <button onclick="switchTab('roulette', event)" class="nav-btn" data-tab="roulette">
+                    <i class="fa-solid fa-circle-dot"></i><span>Roulette</span>
+                </button>
+            </nav>
+
+            <p class="nav-label">Wallet</p>
+            <nav class="space-y-1">
+                <a href="verify/index.html" class="nav-btn">
+                    <i class="fa-solid fa-shield-check"></i><span>Verify Account</span>
+                    <span class="nav-dot dot-amber"></span>
+                </a>
+                <a href="deposit/index.html" class="nav-btn">
+                    <i class="fa-solid fa-arrow-down-to-bracket"></i><span>Deposit</span>
+                </a>
+                <a href="withdraw/index.html" class="nav-btn">
+                    <i class="fa-solid fa-arrow-up-from-bracket"></i><span>Withdraw</span>
+                </a>
+            </nav>
+        </div>
+
+        <div class="fair-card">
+            <div class="fair-row">
+                <i class="fa-solid fa-shield-halved"></i>
+                <span>Provably Fair</span>
+            </div>
+            <p class="fair-sub">SHA-256 verified rolls. Audit every game on the public ledger.</p>
+        </div>
+    </aside>
+
+    <main class="flex-1 flex flex-col min-w-0">
+        <header class="topbar">
+            <div class="topbar-left">
+                <h1 id="page-title" class="page-title">Mines · Multiplier Challenge</h1>
+                <p class="page-sub">Pick safe tiles. Each step compounds your multiplier.</p>
+            </div>
+
+            <div class="topbar-right">
+                <div class="balance-chip">
+                    <span class="balance-icon"><i class="fa-solid fa-coins"></i></span>
+                    <div>
+                        <p class="balance-label">Balance</p>
+                        <p class="balance-value" id="balance-display">— · <span class="balance-unit">DSMP</span></p>
+                    </div>
+                </div>
+                <a href="verify/index.html" class="ghost-btn">
+                    <i class="fa-solid fa-user-shield"></i>
+                    <span>Sign in</span>
+                </a>
+            </div>
+        </header>
+
+        <div class="ticker-bar" data-testid="recent-wins-ticker">
+            <div class="ticker-label">
+                <span class="ticker-dot"></span>
+                <span class="ticker-label-text">Live Wins</span>
+            </div>
+            <div class="ticker-viewport">
+                <div class="ticker-track" id="ticker-track"></div>
+            </div>
+        </div>
+
+        <div class="content-wrap">
+
+            <section id="panel-mines" class="game-grid">
+                <div class="card panel-side">
+                    <div class="space-y-5">
+                        <div>
+                            <label class="field-label">Bet Size</label>
+                            <div class="field-wrap">
+                                <span class="field-prefix">$</span>
+                                <input type="number" placeholder="0.00" disabled class="field disabled">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="field-label">Mines Count</label>
+                            <select disabled class="field disabled">
+                                <option>— Awaiting connection —</option>
+                            </select>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-row"><span>Next Payout</span><span class="stat-val">—</span></div>
+                            <div class="stat-row"><span>Current Multiplier</span><span class="stat-val">—</span></div>
+                            <div class="stat-row"><span>Hash Seed</span><span class="stat-val mono">a4f9…b21c</span></div>
+                        </div>
+                    </div>
+                    <button disabled class="action-btn disabled">
+                        <i class="fa-solid fa-plug-circle-exclamation"></i> Awaiting Connection
+                    </button>
+                </div>
+                <div class="card panel-main">
+                    <div id="mines-grid" class="mines-grid"></div>
+                </div>
+            </section>
+
+            <section id="panel-towers" class="game-grid hidden">
+                <div class="card panel-side">
+                    <div class="space-y-5">
+                        <div>
+                            <label class="field-label">Bet Size</label>
+                            <div class="field-wrap">
+                                <span class="field-prefix">$</span>
+                                <input type="number" placeholder="0.00" disabled class="field disabled">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="field-label">Difficulty</label>
+                            <select disabled class="field disabled"><option>— Awaiting connection —</option></select>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-row"><span>Current Level</span><span class="stat-val">0 / 8</span></div>
+                            <div class="stat-row"><span>Total Multiplier</span><span class="stat-val">—</span></div>
+                        </div>
+                    </div>
+                    <button disabled class="action-btn disabled"><i class="fa-solid fa-plug-circle-exclamation"></i> Awaiting Connection</button>
+                </div>
+                <div class="card panel-main">
+                    <div id="towers-tower" class="towers-deck"></div>
+                </div>
+            </section>
+
+            <section id="panel-dice" class="hidden">
+                <div class="game-grid">
+                    <div class="card panel-side">
+                        <div class="space-y-5">
+                            <div>
+                                <label class="field-label">Bet Size</label>
+                                <div class="field-wrap">
+                                    <span class="field-prefix">$</span>
+                                    <input type="number" placeholder="0.00" disabled class="field disabled">
+                                </div>
+                            </div>
+                            <div class="stat-box">
+                                <div class="stat-row"><span>Multiplier</span><span class="stat-val">—</span></div>
+                                <div class="stat-row"><span>Win Chance</span><span class="stat-val">—</span></div>
+                            </div>
+                        </div>
+                        <button disabled class="action-btn disabled">Roll Dice</button>
+                    </div>
+
+                    <div class="card panel-main flex flex-col justify-center gap-8 p-10">
+                        <div class="dice-stats">
+                            <div class="dice-stat"><p class="dice-stat-label">Roll Under</p><p class="dice-stat-value gold">—</p></div>
+                            <div class="dice-stat"><p class="dice-stat-label">Resulting Roll</p><p class="dice-stat-value">—</p></div>
+                        </div>
+                        <div class="slider-wrap">
+                            <input type="range" min="2" max="98" value="50" disabled class="slider">
+                            <div class="slider-marks"><span>0</span><span>25</span><span>50</span><span>75</span><span>100</span></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="panel-roulette" class="hidden space-y-6">
+                <div class="card p-6">
+                    <div class="wheel-container">
+                        <div class="wheel-pointer"></div>
+                        <div id="roulette-strip" class="wheel-ribbon"></div>
+                    </div>
+                </div>
+
+                <div class="roulette-row">
+                    <div class="card p-6 flex flex-col justify-between">
+                        <div>
+                            <label class="field-label">Bet Size</label>
+                            <div class="field-wrap">
+                                <span class="field-prefix">$</span>
+                                <input type="number" placeholder="0.00" disabled class="field disabled">
+                            </div>
+                            <div class="stat-box mt-4">
+                                <div class="stat-row"><span>Last Roll</span><span class="stat-val mono">—</span></div>
+                            </div>
+                        </div>
+                        <button disabled class="action-btn disabled mt-6">Awaiting Connection</button>
+                    </div>
+
+                    <div class="roulette-cards">
+                        <div class="rcard rcard-red"><span class="rcard-name">Red</span><span class="rcard-mult">2×</span></div>
+                        <div class="rcard rcard-black"><span class="rcard-name">Black</span><span class="rcard-mult">2×</span></div>
+                        <div class="rcard rcard-green"><span class="rcard-name">Green</span><span class="rcard-mult">14×</span></div>
+                    </div>
+                </div>
+            </section>
+
+            <footer class="page-footer">
+                <p>© 2026 Donut-Bet · Not affiliated with Mojang AB. 18+ play responsibly.</p>
+                <div class="footer-links">
+                    <a href="verify/index.html">Verify</a>
+                    <a href="deposit/index.html">Deposit</a>
+                    <a href="withdraw/index.html">Withdraw</a>
+                    <span class="mono text-xs">build 2026.01</span>
+                </div>
+            </footer>
+        </div>
+    </main>
+
+    <script>
+        function switchTab(tabId, ev) {
+            ['mines','towers','dice','roulette'].forEach(t => {
+                document.getElementById('panel-'+t).classList.add('hidden');
+            });
+            document.querySelectorAll('.nav-btn[data-tab]').forEach(b => b.classList.remove('active'));
+            (ev?.currentTarget || document.querySelector(`[data-tab="${tabId}"]`)).classList.add('active');
+            document.getElementById('panel-'+tabId).classList.remove('hidden');
+
+            const meta = {
+                mines:    ["Mines · Multiplier Challenge", "Pick safe tiles. Each step compounds your multiplier."],
+                towers:   ["Towers · Citadel Climb",       "Climb eight tiers. One misstep and the run is gone."],
+                dice:     ["Dice · Provably Fair Wager",   "Set your threshold. Verify the seed after every roll."],
+                roulette: ["Roulette · European Wheel",    "Red, Black or Green — single zero house edge."]
+            };
+            document.getElementById('page-title').innerText = meta[tabId][0];
+            document.querySelector('.page-sub').innerText  = meta[tabId][1];
+        }
+
+        window.onload = function() {
+            const minesGrid = document.getElementById('mines-grid');
+            for (let i = 0; i < 25; i++) {
+                const tile = document.createElement('div');
+                tile.className = "mines-tile";
+                tile.innerHTML = '<i class="fa-solid fa-cube"></i>';
+                minesGrid.appendChild(tile);
+            }
+
+            const towersDeck = document.getElementById('towers-tower');
+            for (let r = 7; r >= 0; r--) {
+                const row = document.createElement('div');
+                row.className = "tower-row";
+                const tag = document.createElement('span');
+                tag.className = "tower-tag";
+                tag.innerText = `T${r+1}`;
+                row.appendChild(tag);
+                for (let c = 0; c < 3; c++) {
+                    const block = document.createElement('div');
+                    block.className = "tower-tile";
+                    block.innerText = "·";
+                    row.appendChild(block);
+                }
+                towersDeck.appendChild(row);
+            }
+
+            const strip = document.getElementById('roulette-strip');
+            const pattern = ['red','black','red','green','black','red','black','red','black','red'];
+            for (let i = 0; i < 40; i++) {
+                const c = document.createElement('div');
+                const kind = pattern[i % pattern.length];
+                c.className = `wheel-card card-${kind}`;
+                c.innerText = kind === 'green' ? '0' : (i+1);
+                strip.appendChild(c);
+            }
+
+            // ===== Recent Wins Ticker =====
+            const igns = ['SteveCraft42','NetherKnight','CreeperDuke','PixelPirate','EmeraldFox','LavaBucket_','RedstoneRey','TNTbaker','BlazeRunner','EnderQueen','GlowSquid99','VoidWalker','PiglinPete','DiamondDani','NotchFan88','MossyCobble','SkeletonKey','PhantomVibe','GoldenApple_','SlimeJumpr'];
+            const games = [
+                {n:'Mines',    i:'fa-land-mine-on', c:'#f43f5e'},
+                {n:'Towers',   i:'fa-gopuram',      c:'#38bdf8'},
+                {n:'Dice',     i:'fa-dice',         c:'#10b981'},
+                {n:'Roulette', i:'fa-circle-dot',   c:'#f5b942'},
+            ];
+            const pick = a => a[Math.floor(Math.random()*a.length)];
+            const fmt  = n => n.toLocaleString('en-US');
+            function makeWin(){
+                const g = pick(games);
+                const ign = pick(igns);
+                const amt = [250, 480, 720, 1100, 1850, 3200, 5400, 8200, 12400, 18750, 27500, 41200, 68000, 95000][Math.floor(Math.random()*14)];
+                const mult = (Math.random()*9 + 1.1).toFixed(2);
+                return `<div class="ticker-item">
+                    <span class="ticker-game" style="color:${g.c}"><i class="fa-solid ${g.i}"></i> ${g.n}</span>
+                    <span class="ticker-user">${ign}</span>
+                    <span class="ticker-mult">${mult}×</span>
+                    <span class="ticker-amt">+${fmt(amt)} <span class="ticker-unit">DSMP</span></span>
+                </div>`;
+            }
+            const track = document.getElementById('ticker-track');
+            let html = '';
+            for (let i=0;i<14;i++) html += makeWin();
+            track.innerHTML = html + html;
+
+            setInterval(()=>{
+                const fresh = makeWin();
+                track.insertAdjacentHTML('beforeend', fresh);
+                track.insertAdjacentHTML('beforeend', fresh);
+                if (track.children.length > 60) {
+                    track.removeChild(track.firstElementChild);
+                    track.removeChild(track.firstElementChild);
+                }
+            }, 6000);
+        };
+    </script>
+</body>
+</html>

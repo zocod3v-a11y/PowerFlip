@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Withdraw · Donut-Bet</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,700;12..96,800&family=Geist:wght@300;400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body class="flex min-h-screen">
+
+    <aside class="sidebar">
+        <div>
+            <a href="../index.html" class="brand">
+                <span class="brand-mark"><i class="fa-solid fa-cube"></i></span>
+                <div class="brand-text">
+                    <span class="brand-title">Donut-Bet</span>
+                    <span class="brand-sub">DonutSMP · Casino</span>
+                </div>
+            </a>
+            <p class="nav-label">Games</p>
+            <nav class="space-y-1">
+                <a href="../index.html" class="nav-btn"><i class="fa-solid fa-land-mine-on"></i><span>Mines</span></a>
+                <a href="../index.html" class="nav-btn"><i class="fa-solid fa-gopuram"></i><span>Towers</span></a>
+                <a href="../index.html" class="nav-btn"><i class="fa-solid fa-dice"></i><span>Dice</span></a>
+                <a href="../index.html" class="nav-btn"><i class="fa-solid fa-circle-dot"></i><span>Roulette</span></a>
+            </nav>
+            <p class="nav-label">Wallet</p>
+            <nav class="space-y-1">
+                <a href="../verify/index.html" class="nav-btn"><i class="fa-solid fa-shield-check"></i><span>Verify Account</span></a>
+                <a href="../deposit/index.html" class="nav-btn"><i class="fa-solid fa-arrow-down-to-bracket"></i><span>Deposit</span></a>
+                <a href="index.html" class="nav-btn active"><i class="fa-solid fa-arrow-up-from-bracket"></i><span>Withdraw</span><span class="nav-dot dot-amber"></span></a>
+            </nav>
+        </div>
+        <div class="fair-card">
+            <div class="fair-row"><i class="fa-solid fa-shield-halved"></i><span>Provably Fair</span></div>
+            <p class="fair-sub">SHA-256 verified rolls. Audit every game on the public ledger.</p>
+        </div>
+    </aside>
+
+    <main class="flex-1 flex flex-col min-w-0">
+        <header class="topbar">
+            <div class="topbar-left">
+                <h1 class="page-title">Withdraw</h1>
+                <p class="page-sub">Cash out chips back to DonutSMP currency, paid directly to your verified IGN.</p>
+            </div>
+            <div class="topbar-right">
+                <div class="balance-chip">
+                    <span class="balance-icon"><i class="fa-solid fa-coins"></i></span>
+                    <div>
+                        <p class="balance-label">Balance</p>
+                        <p class="balance-value">— · <span class="balance-unit">DSMP</span></p>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="content-wrap">
+
+            <div class="page-hero">
+                <span class="eyebrow"><i class="fa-solid fa-circle"></i> Cashier · Withdraw</span>
+                <h2>Send your chips back in-game, no fees.</h2>
+                <p>Once submitted, the Donut-Bet bot will pay your verified IGN on DonutSMP within minutes. Wagering requirements (if any from bonuses) must be cleared first.</p>
+            </div>
+
+            <div class="alert">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+                <p><strong>You must be online in DonutSMP</strong> at the moment of payout — the bot uses <span class="mono">/pay</span> which requires the recipient to be on the server.</p>
+            </div>
+
+            <div class="two-col">
+
+                <div class="section-card">
+                    <h3 class="section-title"><i class="fa-solid fa-arrow-up-from-bracket"></i> Request withdrawal</h3>
+                    <p class="section-desc">Enter your IGN and amount. We will confirm the payout in-game once it lands.</p>
+
+                    <div class="input-group">
+                        <label class="field-label" for="w-ign">Destination IGN</label>
+                        <input id="w-ign" type="text" class="input-active" placeholder="Your verified Minecraft IGN" autocomplete="off" data-testid="withdraw-ign-input">
+                        <span class="input-helper">Must match the IGN bound to this wallet via <a href="../verify/index.html" style="color:var(--gold);">verification</a>.</span>
+                    </div>
+
+                    <div class="input-group">
+                        <label class="field-label" for="w-amount">Amount (DSMP)</label>
+                        <input id="w-amount" type="number" min="500" step="100" class="input-active" placeholder="e.g. 7500" data-testid="withdraw-amount-input">
+                        <span class="input-helper">Minimum withdrawal · <span class="mono">500</span> DSMP. Daily limit · <span class="mono">2,500,000</span> DSMP.</span>
+                    </div>
+
+                    <label class="field-label" style="margin-bottom:8px;">Quick amounts</label>
+                    <div class="chip-row" style="margin-bottom: 18px;">
+                        <button class="chip" onclick="setAmt(500, this)" data-testid="wamt-500">500</button>
+                        <button class="chip" onclick="setAmt(2500, this)" data-testid="wamt-2500">2,500</button>
+                        <button class="chip" onclick="setAmt(10000, this)" data-testid="wamt-10000">10,000</button>
+                        <button class="chip" onclick="setAmt(50000, this)" data-testid="wamt-50000">50,000</button>
+                        <button class="chip" onclick="setAmt('max', this)" data-testid="wamt-max">Max</button>
+                    </div>
+
+                    <div class="stat-box" style="margin-bottom: 18px;">
+                        <div class="stat-row"><span>Amount</span><span class="stat-val" id="sum-amt">0 DSMP</span></div>
+                        <div class="stat-row"><span>Network / In-game fee</span><span class="stat-val">0 DSMP</span></div>
+                        <div class="stat-row"><span>You receive</span><span class="stat-val gold" id="sum-net" style="color:var(--gold)">0 DSMP</span></div>
+                    </div>
+
+                    <button class="action-btn" onclick="submitWithdraw()" data-testid="submit-withdraw-btn">
+                        <i class="fa-solid fa-paper-plane"></i> Submit Withdrawal Request
+                    </button>
+
+                    <div id="withdraw-stage" style="display:none; margin-top:22px;">
+                        <div class="divider"></div>
+                        <div class="step">
+                            <div class="step-num">1</div>
+                            <div class="step-body">
+                                <h4>Request received</h4>
+                                <p>Ticket <span class="mono" id="w-ref" style="color:var(--gold)">—</span> queued. Estimated processing time: under 3 minutes.</p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-num">2</div>
+                            <div class="step-body">
+                                <h4>Be online in DonutSMP</h4>
+                                <p>Stay connected to the server with the IGN <span class="mono" id="w-target" style="color:var(--gold)">—</span> so the bot can pay you.</p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-num">3</div>
+                            <div class="step-body">
+                                <h4>Payout confirmation</h4>
+                                <p>You will get an in-game receipt from <span class="mono">DonutBetBot</span> with the exact amount.</p>
+                                <div style="margin-top:10px;"><span class="badge badge-warn" data-testid="withdraw-status"><i class="fa-solid fa-hourglass-half"></i> Pending payout</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-card">
+                    <h3 class="section-title"><i class="fa-solid fa-clock-rotate-left"></i> Recent payouts</h3>
+                    <div class="info-row"><span class="info-key"><span class="mono">SteveCraft42</span></span><span class="badge badge-good"><i class="fa-solid fa-check"></i> 12,400 DSMP</span></div>
+                    <div class="info-row"><span class="info-key"><span class="mono">NetherKnight</span></span><span class="badge badge-good"><i class="fa-solid fa-check"></i> 3,200 DSMP</span></div>
+                    <div class="info-row"><span class="info-key"><span class="mono">CreeperDuke</span></span><span class="badge badge-good"><i class="fa-solid fa-check"></i> 85,000 DSMP</span></div>
+                    <div class="info-row"><span class="info-key"><span class="mono">PixelPirate</span></span><span class="badge badge-warn"><i class="fa-solid fa-hourglass-half"></i> 4,750 DSMP</span></div>
+
+                    <div class="divider"></div>
+
+                    <h3 class="section-title" style="margin-top:6px;"><i class="fa-solid fa-gauge-high"></i> Limits & SLAs</h3>
+                    <div class="info-row"><span class="info-key">Min withdrawal</span><span class="info-val">500 DSMP</span></div>
+                    <div class="info-row"><span class="info-key">Daily cap</span><span class="info-val">2,500,000 DSMP</span></div>
+                    <div class="info-row"><span class="info-key">Processing fee</span><span class="info-val">0%</span></div>
+                    <div class="info-row"><span class="info-key">Avg payout time</span><span class="info-val">≈ 90 s</span></div>
+                    <div class="info-row"><span class="info-key">Cashier hours</span><span class="info-val">24 / 7</span></div>
+                </div>
+            </div>
+
+            <footer class="page-footer">
+                <p>© 2026 Donut-Bet · Not affiliated with Mojang AB. 18+ play responsibly.</p>
+                <div class="footer-links">
+                    <a href="../index.html">Games</a>
+                    <a href="../verify/index.html">Verify</a>
+                    <a href="../deposit/index.html">Deposit</a>
+                    <span class="mono text-xs">build 2026.01</span>
+                </div>
+            </footer>
+        </div>
+    </main>
+
+    <script>
+        const MAX_BAL = 0;
+        function setAmt(v, btn){
+            const input = document.getElementById('w-amount');
+            input.value = (v === 'max') ? MAX_BAL : v;
+            document.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));
+            btn.classList.add('active');
+            recalc();
+        }
+        function recalc(){
+            const a = parseInt(document.getElementById('w-amount').value, 10) || 0;
+            const f = (n)=> n.toLocaleString('en-US') + ' DSMP';
+            document.getElementById('sum-amt').innerText = f(a);
+            document.getElementById('sum-net').innerText = f(a);
+        }
+        document.getElementById('w-amount').addEventListener('input', recalc);
+
+        function submitWithdraw(){
+            const ign = document.getElementById('w-ign').value.trim();
+            const amt = parseInt(document.getElementById('w-amount').value, 10);
+            if (!ign || !/^[A-Za-z0-9_]{3,16}$/.test(ign)) { alert("Enter a valid Minecraft IGN."); return; }
+            if (!amt || amt < 500) { alert("Minimum withdrawal is 500 DSMP."); return; }
+            const ref = 'WDR-' + Math.random().toString(36).slice(2,6).toUpperCase() + '-' + Math.random().toString(36).slice(2,6).toUpperCase();
+            document.getElementById('w-ref').innerText = ref;
+            document.getElementById('w-target').innerText = ign;
+            document.getElementById('withdraw-stage').style.display = 'block';
+        }
+    </script>
+</body>
+</html>

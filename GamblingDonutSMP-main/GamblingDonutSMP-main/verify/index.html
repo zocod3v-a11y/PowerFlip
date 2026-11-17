@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verify Account · Donut-Bet</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,700;12..96,800&family=Geist:wght@300;400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body class="flex min-h-screen">
+
+    <aside class="sidebar">
+        <div>
+            <a href="../index.html" class="brand">
+                <span class="brand-mark"><i class="fa-solid fa-cube"></i></span>
+                <div class="brand-text">
+                    <span class="brand-title">Donut-Bet</span>
+                    <span class="brand-sub">DonutSMP · Casino</span>
+                </div>
+            </a>
+
+            <p class="nav-label">Games</p>
+            <nav class="space-y-1">
+                <a href="../index.html" class="nav-btn"><i class="fa-solid fa-land-mine-on"></i><span>Mines</span></a>
+                <a href="../index.html" class="nav-btn"><i class="fa-solid fa-gopuram"></i><span>Towers</span></a>
+                <a href="../index.html" class="nav-btn"><i class="fa-solid fa-dice"></i><span>Dice</span></a>
+                <a href="../index.html" class="nav-btn"><i class="fa-solid fa-circle-dot"></i><span>Roulette</span></a>
+            </nav>
+
+            <p class="nav-label">Wallet</p>
+            <nav class="space-y-1">
+                <a href="index.html" class="nav-btn active"><i class="fa-solid fa-shield-check"></i><span>Verify Account</span><span class="nav-dot dot-amber"></span></a>
+                <a href="../deposit/index.html" class="nav-btn"><i class="fa-solid fa-arrow-down-to-bracket"></i><span>Deposit</span></a>
+                <a href="../withdraw/index.html" class="nav-btn"><i class="fa-solid fa-arrow-up-from-bracket"></i><span>Withdraw</span></a>
+            </nav>
+        </div>
+
+        <div class="fair-card">
+            <div class="fair-row"><i class="fa-solid fa-shield-halved"></i><span>Provably Fair</span></div>
+            <p class="fair-sub">SHA-256 verified rolls. Audit every game on the public ledger.</p>
+        </div>
+    </aside>
+
+    <main class="flex-1 flex flex-col min-w-0">
+        <header class="topbar">
+            <div class="topbar-left">
+                <h1 class="page-title">Verify Account</h1>
+                <p class="page-sub">Link your DonutSMP Minecraft account to access games and the cashier.</p>
+            </div>
+            <div class="topbar-right">
+                <div class="balance-chip">
+                    <span class="balance-icon"><i class="fa-solid fa-coins"></i></span>
+                    <div>
+                        <p class="balance-label">Balance</p>
+                        <p class="balance-value">— · <span class="balance-unit">DSMP</span></p>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="content-wrap">
+
+            <div class="page-hero">
+                <span class="eyebrow"><i class="fa-solid fa-circle"></i> Step 1 · Authentication</span>
+                <h2>Verify your Minecraft identity.</h2>
+                <p>Enter your in-game name and complete the in-game challenge from the DonutSMP server. Verification is one-time and links your wallet to your IGN.</p>
+            </div>
+
+            <div class="alert">
+                <i class="fa-solid fa-circle-info"></i>
+                <p><strong>Heads up:</strong> Donut-Bet will <em>never</em> ask for your Mojang or Microsoft password. Verification happens entirely in-game via private message to our bot account.</p>
+            </div>
+
+            <div class="two-col">
+
+                <div class="section-card">
+                    <h3 class="section-title"><i class="fa-solid fa-user-shield"></i> Verify Minecraft account</h3>
+                    <p class="section-desc">Enter your IGN exactly as it appears on the server. The verification code expires in 10 minutes.</p>
+
+                    <div class="input-group">
+                        <label class="field-label" for="ign">Minecraft IGN</label>
+                        <input id="ign" type="text" class="input-active" placeholder="e.g. SteveCraft42" autocomplete="off" data-testid="verify-ign-input">
+                        <span class="input-helper">3–16 chars · letters, numbers, and underscores only.</span>
+                    </div>
+
+                    <button class="action-btn" onclick="genCode()" data-testid="generate-code-btn">
+                        <i class="fa-solid fa-key"></i> Generate Verification Code
+                    </button>
+
+                    <div id="code-stage" style="display:none; margin-top: 22px;">
+                        <div class="divider"></div>
+
+                        <div class="step">
+                            <div class="step-num">1</div>
+                            <div class="step-body">
+                                <h4>Join the DonutSMP server</h4>
+                                <p>Connect to <span class="mono" style="color:var(--gold)">donutsmp.net</span> with the Java client (1.20+).</p>
+                            </div>
+                        </div>
+
+                        <div class="step">
+                            <div class="step-num">2</div>
+                            <div class="step-body">
+                                <h4>Send your verification code in-game</h4>
+                                <p>Run the command below to message the Donut-Bet bot. You must be on the same server.</p>
+                                <div class="code-block" data-testid="verify-command-block">
+                                    <span id="verify-command">/msg DonutBetBot verify ABCD-1234</span>
+                                    <button class="code-copy" onclick="copyText('verify-command', this)" data-testid="copy-verify-command">
+                                        <i class="fa-regular fa-copy"></i> Copy
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="step">
+                            <div class="step-num">3</div>
+                            <div class="step-body">
+                                <h4>Wait for confirmation</h4>
+                                <p>You'll receive a chat-message receipt in-game and this page will mark your account as verified automatically.</p>
+                                <div style="margin-top:10px; display:flex; gap:10px; align-items:center;">
+                                    <span class="badge badge-warn" id="verify-status" data-testid="verify-status"><i class="fa-solid fa-hourglass-half"></i> Awaiting in-game command</span>
+                                    <span class="mono" style="color:var(--text-dim); font-size:11px;">Expires in <span id="countdown">10:00</span></span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="section-card">
+                    <h3 class="section-title"><i class="fa-solid fa-circle-question"></i> Why verify?</h3>
+                    <div class="side-stat">
+                        <div class="side-stat-icon"><i class="fa-solid fa-lock"></i></div>
+                        <div>
+                            <h5>Anti-alt protection</h5>
+                            <p>Each Mojang UUID can hold only one wallet. Verification stops sybil abuse on bonuses and faucets.</p>
+                        </div>
+                    </div>
+                    <div class="side-stat">
+                        <div class="side-stat-icon"><i class="fa-solid fa-wallet"></i></div>
+                        <div>
+                            <h5>Instant in-game cashier</h5>
+                            <p>Once verified, deposits via <span class="mono">/pay</span> and withdrawals to your IGN are automated.</p>
+                        </div>
+                    </div>
+                    <div class="side-stat">
+                        <div class="side-stat-icon"><i class="fa-solid fa-receipt"></i></div>
+                        <div>
+                            <h5>Bet history & receipts</h5>
+                            <p>All rolls are tied to your verified UUID and exported as provably-fair receipts on request.</p>
+                        </div>
+                    </div>
+
+                    <div class="divider"></div>
+
+                    <h3 class="section-title" style="margin-top:6px;"><i class="fa-solid fa-server"></i> Bot details</h3>
+                    <div class="info-row">
+                        <span class="info-key">Server</span>
+                        <span class="info-val">donutsmp.net</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-key">Bot IGN</span>
+                        <span class="info-val">DonutBetBot</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-key">Required rank</span>
+                        <span class="info-val">Member or above</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-key">Status</span>
+                        <span class="badge badge-good"><i class="fa-solid fa-circle" style="font-size:7px"></i> Online</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <footer class="page-footer">
+                <p>© 2026 Donut-Bet · Not affiliated with Mojang AB. 18+ play responsibly.</p>
+                <div class="footer-links">
+                    <a href="../index.html">Games</a>
+                    <a href="../deposit/index.html">Deposit</a>
+                    <a href="../withdraw/index.html">Withdraw</a>
+                    <span class="mono text-xs">build 2026.01</span>
+                </div>
+            </footer>
+        </div>
+    </main>
+
+    <script>
+        function genCode(){
+            const ign = document.getElementById('ign').value.trim();
+            if (!ign || !/^[A-Za-z0-9_]{3,16}$/.test(ign)) {
+                alert("Enter a valid Minecraft IGN (3–16 chars, letters/numbers/_).");
+                return;
+            }
+            const chars = "ABCDEFGHJKMNPQRSTUVWXYZ23456789";
+            let code = "";
+            for (let i=0;i<8;i++){ code += chars[Math.floor(Math.random()*chars.length)]; if(i===3) code += "-"; }
+            document.getElementById('verify-command').innerText = `/msg DonutBetBot verify ${code}`;
+            document.getElementById('code-stage').style.display = 'block';
+
+            let total = 600;
+            const cd = document.getElementById('countdown');
+            const timer = setInterval(()=>{
+                total--;
+                if (total<=0){ clearInterval(timer); cd.innerText="expired"; document.getElementById('verify-status').outerHTML = '<span class="badge badge-bad" id="verify-status"><i class="fa-solid fa-xmark"></i> Code expired</span>'; return; }
+                const m = String(Math.floor(total/60)).padStart(2,'0');
+                const s = String(total%60).padStart(2,'0');
+                cd.innerText = `${m}:${s}`;
+            }, 1000);
+        }
+        function copyText(id, btn){
+            const txt = document.getElementById(id).innerText;
+            navigator.clipboard.writeText(txt);
+            const orig = btn.innerHTML;
+            btn.innerHTML = '<i class="fa-solid fa-check"></i> Copied';
+            setTimeout(()=>{ btn.innerHTML = orig; }, 1400);
+        }
+    </script>
+</body>
+</html>
