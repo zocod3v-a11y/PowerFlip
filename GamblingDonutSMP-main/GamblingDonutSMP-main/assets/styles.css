@@ -798,3 +798,21 @@ main {
 .space-y-6 > * + * {
     margin-top: 24px;
 }
+.sidebar {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    align-items: stretch !important;
+    height: 100vh !important;
+    width: 280px !important;
+    min-width: 280px !important;
+}
+.sidebar {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    align-items: stretch !important;
+    height: 100vh !important;
+    width: 280px !important;
+    min-width: 280px !important;
+}
