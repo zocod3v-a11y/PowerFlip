@@ -23,6 +23,7 @@
                     <span class="brand-sub">PowerSMP · Casino</span>
                 </div>
             </a>
+
             <p class="nav-label">Games</p>
             <nav class="space-y-1">
                 <a href="../index.html" class="nav-btn"><i class="fa-solid fa-land-mine-on"></i><span>Mines</span></a>
@@ -30,6 +31,7 @@
                 <a href="../index.html" class="nav-btn"><i class="fa-solid fa-dice"></i><span>Dice</span></a>
                 <a href="../index.html" class="nav-btn"><i class="fa-solid fa-circle-dot"></i><span>Roulette</span></a>
             </nav>
+
             <p class="nav-label">Wallet</p>
             <nav class="space-y-1">
                 <a href="../verify/index.html" class="nav-btn"><i class="fa-solid fa-shield-halved"></i><span>Verify Account</span></a>
@@ -37,6 +39,7 @@
                 <a href="../withdraw/index.html" class="nav-btn"><i class="fa-solid fa-arrow-up-from-bracket"></i><span>Withdraw</span></a>
             </nav>
         </div>
+
         <div class="fair-card">
             <div class="fair-row"><i class="fa-solid fa-shield-halved"></i><span>Provably Fair</span></div>
             <p class="fair-sub">SHA-256 verified rolls. Audit every game on the public ledger.</p>
@@ -153,53 +156,60 @@
                         <div class="side-stat-icon"><i class="fa-solid fa-fingerprint"></i></div>
                         <div>
                             <h5>Only pay <span class="mono">PowerFlipBot</span></h5>
-                            Verify the IGN spelling in tab-complete. Scammers use look-alike names like PowerFlip8ot.
+                            <p>Verify the IGN spelling in tab-complete. Scammers use look-alike names like <span class="mono">PowerFlip8ot</span>.</p>
+                        </div>
+                    </div>
+                    <div class="side-stat">
+                        <div class="side-stat-icon"><i class="fa-solid fa-receipt"></i></div>
+                        <div>
+                            <h5>Keep your in-game receipt</h5>
+                            <p>If credit hasn't arrived in 5 minutes, open a ticket with the transaction ID from <span class="mono">/baltop</span>.</p>
+                        </div>
+                    </div>
+                    <div class="side-stat">
+                        <div class="side-stat-icon"><i class="fa-solid fa-clock"></i></div>
+                        <div>
+                            <h5>Ticket expires</h5>
+                            <p>Each generated reference is valid for 30 minutes. After that, generate a new one.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
+            <footer class="page-footer">
+                <p>© 2026 PowerFlip · Not affiliated with Mojang AB. 18+ play responsibly.</p>
+                <div class="footer-links">
+                    <a href="../index.html">Games</a>
+                    <a href="../verify/index.html">Verify</a>
+                    <a href="../withdraw/index.html">Withdraw</a>
+                    <span class="mono text-xs">build 2026.01</span>
+                </div>
+            </footer>
+        </div>
+    </main>
 
-
-
-
-Keep your in-game receipt
-If credit hasn't arrived in 5 minutes, open a ticket with the transaction ID from /baltop.
-
-
-
-
-
-Ticket expires
-Each generated reference is valid for 30 minutes. After that, generate a new one.
-
-
-
-© 2026 PowerFlip · Not affiliated with Mojang AB. 18+ play responsibly.
-
-Games
-Verify
-Withdraw
-build 2026.01
-
-
-
-function setAmt(v, btn){
-document.getElementById('amount').value = v;
-document.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));
-btn.classList.add('active');
-}
-function genDeposit(){
-const amt = parseInt(document.getElementById('amount').value, 10);
-if (!amt || amt < 100) { alert("Enter at least 100 PSMP."); return; }
-if (amt > 1000000) { alert("Maximum 1,000,000 PSMP per ticket."); return; }
-const ref = 'DEP-' + Math.random().toString(36).slice(2,6).toUpperCase() + '-' + Math.random().toString(36).slice(2,6).toUpperCase();
-document.getElementById('deposit-command').innerText = /pay PowerFlipBot ${amt.toLocaleString('en-US').replace(/,/g,'')};
-document.getElementById('ticket-ref').innerText = ref;
-document.getElementById('deposit-stage').style.display = 'block';
-}
-function copyText(id, btn){
-const txt = document.getElementById(id).innerText;
-navigator.clipboard.writeText(txt);
-const orig = btn.innerHTML;
-btn.innerHTML = ' Copied';
-setTimeout(()=>{ btn.innerHTML = orig; }, 1400);
-}
-
-
+    <script>
+        function setAmt(v, btn){
+            document.getElementById('amount').value = v;
+            document.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));
+            btn.classList.add('active');
+        }
+        function genDeposit(){
+            const amt = parseInt(document.getElementById('amount').value, 10);
+            if (!amt || amt < 100) { alert("Enter at least 100 PSMP."); return; }
+            if (amt > 1000000) { alert("Maximum 1,000,000 PSMP per ticket."); return; }
+            const ref = 'DEP-' + Math.random().toString(36).slice(2,6).toUpperCase() + '-' + Math.random().toString(36).slice(2,6).toUpperCase();
+            document.getElementById('deposit-command').innerText = `/pay PowerFlipBot ${amt.toLocaleString('en-US').replace(/,/g,'')}`;
+            document.getElementById('ticket-ref').innerText = ref;
+            document.getElementById('deposit-stage').style.display = 'block';
+        }
+        function copyText(id, btn){
+            const txt = document.getElementById(id).innerText;
+            navigator.clipboard.writeText(txt);
+            const orig = btn.innerHTML;
+            btn.innerHTML = '<i class="fa-solid fa-check"></i> Copied';
+            setTimeout(()=>{ btn.innerHTML = orig; }, 1400);
+        }
+    </script>
+</body>
+</html>
