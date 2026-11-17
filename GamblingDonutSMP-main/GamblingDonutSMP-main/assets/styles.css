@@ -3,6 +3,10 @@
    Palette: midnight navy + warm gold + emerald accents
    ============================================================ */
 
+.ticker-bar{
+    display: none !important;
+}
+
 :root{
     --bg:           #07090f;
     --bg-soft:      #0c1018;
