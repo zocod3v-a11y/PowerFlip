@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Deposit · Donut-Bet</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,700;12..96,800&family=Geist:wght@300;400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    <title>Deposit · PowerFlip</title>
+    <script src="https://tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cloudflare.com">
+    <link rel="preconnect" href="https://googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link href="https://googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,700;12..96,800&family=Geist:wght@300;400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../assets/styles.css">
 </head>
 <body class="flex min-h-screen">
@@ -16,10 +16,11 @@
     <aside class="sidebar">
         <div>
             <a href="../index.html" class="brand">
-                <span class="brand-mark"><i class="fa-solid fa-cube"></i></span>
                 <div class="brand-text">
-                    <span class="brand-title">Donut-Bet</span>
-                    <span class="brand-sub">DonutSMP · Casino</span>
+                    <span class="brand-title">
+                        <span class="brand-green">P</span><img src="../assets/wuerfel.png.webp" alt="O" class="brand-dice"><span class="brand-green">WER</span><span class="brand-white">FLIP</span>
+                    </span>
+                    <span class="brand-sub">PowerSMP · Casino</span>
                 </div>
             </a>
             <p class="nav-label">Games</p>
@@ -31,8 +32,8 @@
             </nav>
             <p class="nav-label">Wallet</p>
             <nav class="space-y-1">
-                <a href="../verify/index.html" class="nav-btn"><i class="fa-solid fa-shield-check"></i><span>Verify Account</span></a>
-                <a href="index.html" class="nav-btn active"><i class="fa-solid fa-arrow-down-to-bracket"></i><span>Deposit</span><span class="nav-dot dot-amber"></span></a>
+                <a href="../verify/index.html" class="nav-btn"><i class="fa-solid fa-shield-halved"></i><span>Verify Account</span></a>
+                <a href="index.html" class="nav-btn active"><i class="fa-solid fa-right-to-bracket"></i><span>Deposit</span><span class="nav-dot dot-amber"></span></a>
                 <a href="../withdraw/index.html" class="nav-btn"><i class="fa-solid fa-arrow-up-from-bracket"></i><span>Withdraw</span></a>
             </nav>
         </div>
@@ -46,14 +47,14 @@
         <header class="topbar">
             <div class="topbar-left">
                 <h1 class="page-title">Deposit</h1>
-                <p class="page-sub">Fund your Donut-Bet wallet directly from in-game DonutSMP currency.</p>
+                <p class="page-sub">Fund your PowerFlip wallet directly from in-game PowerSMP currency.</p>
             </div>
             <div class="topbar-right">
                 <div class="balance-chip">
                     <span class="balance-icon"><i class="fa-solid fa-coins"></i></span>
                     <div>
                         <p class="balance-label">Balance</p>
-                        <p class="balance-value">— · <span class="balance-unit">DSMP</span></p>
+                        <p class="balance-value">— · <span class="balance-unit">PSMP</span></p>
                     </div>
                 </div>
             </div>
@@ -64,7 +65,7 @@
             <div class="page-hero">
                 <span class="eyebrow"><i class="fa-solid fa-circle"></i> Cashier · Deposit</span>
                 <h2>Pay our in-game wallet, get instant credit.</h2>
-                <p>Send DonutSMP currency to our verified bot using <span class="mono" style="color:var(--gold)">/pay</span>. Your wallet is credited 1:1 as soon as the in-game transaction confirms.</p>
+                <p>Send PowerSMP currency to our verified bot using <span class="mono" style="color:var(--gold)">/pay</span>. Your wallet is credited 1:1 as soon as the in-game transaction confirms.</p>
             </div>
 
             <div class="alert">
@@ -75,13 +76,13 @@
             <div class="two-col">
 
                 <div class="section-card">
-                    <h3 class="section-title"><i class="fa-solid fa-arrow-down-to-bracket"></i> Generate deposit ticket</h3>
-                    <p class="section-desc">Choose an amount, copy the payment command, and run it once in DonutSMP.</p>
+                    <h3 class="section-title"><i class="fa-solid fa-right-to-bracket"></i> Generate deposit ticket</h3>
+                    <p class="section-desc">Choose an amount, copy the payment command, and run it once in PowerSMP.</p>
 
                     <div class="input-group">
-                        <label class="field-label" for="amount">Amount (DSMP)</label>
+                        <label class="field-label" for="amount">Amount (PSMP)</label>
                         <input id="amount" type="number" min="100" step="100" class="input-active" placeholder="e.g. 5000" data-testid="deposit-amount-input">
-                        <span class="input-helper">Minimum deposit · <span class="mono">100</span> DSMP. Maximum per ticket · <span class="mono">1,000,000</span> DSMP.</span>
+                        <span class="input-helper">Minimum deposit · <span class="mono">100</span> PSMP. Maximum per ticket · <span class="mono">1,000,000</span> PSMP.</span>
                     </div>
 
                     <label class="field-label" style="margin-bottom:8px;">Quick amounts</label>
@@ -103,8 +104,8 @@
                         <div class="step">
                             <div class="step-num">1</div>
                             <div class="step-body">
-                                <h4>Join DonutSMP</h4>
-                                <p>Make sure you are on the same server (<span class="mono" style="color:var(--gold)">donutsmp.net</span>) and signed in with your verified IGN.</p>
+                                <h4>Join PowerSMP</h4>
+                                <p>Make sure you are on the same server (<span class="mono" style="color:var(--gold)">powersmp.net</span>) and signed in with your verified IGN.</p>
                             </div>
                         </div>
 
@@ -114,7 +115,7 @@
                                 <h4>Run the payment command</h4>
                                 <p>This command pays our verified bot. The memo binds the deposit to your ticket.</p>
                                 <div class="code-block">
-                                    <span id="deposit-command" data-testid="deposit-command">/pay DonutBetBot 0</span>
+                                    <span id="deposit-command" data-testid="deposit-command">/pay PowerFlipBot 0</span>
                                     <button class="code-copy" onclick="copyText('deposit-command', this)" data-testid="copy-deposit-command">
                                         <i class="fa-regular fa-copy"></i> Copy
                                     </button>
@@ -138,9 +139,9 @@
 
                 <div class="section-card">
                     <h3 class="section-title"><i class="fa-solid fa-circle-info"></i> Deposit details</h3>
-                    <div class="info-row"><span class="info-key">Bot IGN</span><span class="info-val">DonutBetBot</span></div>
-                    <div class="info-row"><span class="info-key">Server</span><span class="info-val">donutsmp.net</span></div>
-                    <div class="info-row"><span class="info-key">Conversion</span><span class="info-val">1 DSMP · 1 chip</span></div>
+                    <div class="info-row"><span class="info-key">Bot IGN</span><span class="info-val">PowerFlipBot</span></div>
+                    <div class="info-row"><span class="info-key">Server</span><span class="info-val">powersmp.net</span></div>
+                    <div class="info-row"><span class="info-key">Conversion</span><span class="info-val">1 PSMP · 1 chip</span></div>
                     <div class="info-row"><span class="info-key">Processing fee</span><span class="info-val">0%</span></div>
                     <div class="info-row"><span class="info-key">Avg credit time</span><span class="info-val">≈ 5 s</span></div>
                     <div class="info-row"><span class="info-key">Bot status</span><span class="badge badge-good"><i class="fa-solid fa-circle" style="font-size:7px"></i> Online</span></div>
@@ -151,61 +152,54 @@
                     <div class="side-stat">
                         <div class="side-stat-icon"><i class="fa-solid fa-fingerprint"></i></div>
                         <div>
-                            <h5>Only pay <span class="mono">DonutBetBot</span></h5>
-                            <p>Verify the IGN spelling in tab-complete. Scammers use look-alike names like <span class="mono">DonutBet8ot</span>.</p>
-                        </div>
-                    </div>
-                    <div class="side-stat">
-                        <div class="side-stat-icon"><i class="fa-solid fa-receipt"></i></div>
-                        <div>
-                            <h5>Keep your in-game receipt</h5>
-                            <p>If credit hasn't arrived in 5 minutes, open a ticket with the transaction ID from <span class="mono">/baltop</span>.</p>
-                        </div>
-                    </div>
-                    <div class="side-stat">
-                        <div class="side-stat-icon"><i class="fa-solid fa-clock"></i></div>
-                        <div>
-                            <h5>Ticket expires</h5>
-                            <p>Each generated reference is valid for 30 minutes. After that, generate a new one.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                            <h5>Only pay <span class="mono">PowerFlipBot</span></h5>
+                            Verify the IGN spelling in tab-complete. Scammers use look-alike names like PowerFlip8ot.
 
-            <footer class="page-footer">
-                <p>© 2026 Donut-Bet · Not affiliated with Mojang AB. 18+ play responsibly.</p>
-                <div class="footer-links">
-                    <a href="../index.html">Games</a>
-                    <a href="../verify/index.html">Verify</a>
-                    <a href="../withdraw/index.html">Withdraw</a>
-                    <span class="mono text-xs">build 2026.01</span>
-                </div>
-            </footer>
-        </div>
-    </main>
 
-    <script>
-        function setAmt(v, btn){
-            document.getElementById('amount').value = v;
-            document.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));
-            btn.classList.add('active');
-        }
-        function genDeposit(){
-            const amt = parseInt(document.getElementById('amount').value, 10);
-            if (!amt || amt < 100) { alert("Enter at least 100 DSMP."); return; }
-            if (amt > 1000000) { alert("Maximum 1,000,000 DSMP per ticket."); return; }
-            const ref = 'DEP-' + Math.random().toString(36).slice(2,6).toUpperCase() + '-' + Math.random().toString(36).slice(2,6).toUpperCase();
-            document.getElementById('deposit-command').innerText = `/pay DonutBetBot ${amt.toLocaleString('en-US').replace(/,/g,'')}`;
-            document.getElementById('ticket-ref').innerText = ref;
-            document.getElementById('deposit-stage').style.display = 'block';
-        }
-        function copyText(id, btn){
-            const txt = document.getElementById(id).innerText;
-            navigator.clipboard.writeText(txt);
-            const orig = btn.innerHTML;
-            btn.innerHTML = '<i class="fa-solid fa-check"></i> Copied';
-            setTimeout(()=>{ btn.innerHTML = orig; }, 1400);
-        }
-    </script>
-</body>
-</html>
+
+
+
+Keep your in-game receipt
+If credit hasn't arrived in 5 minutes, open a ticket with the transaction ID from /baltop.
+
+
+
+
+
+Ticket expires
+Each generated reference is valid for 30 minutes. After that, generate a new one.
+
+
+
+© 2026 PowerFlip · Not affiliated with Mojang AB. 18+ play responsibly.
+
+Games
+Verify
+Withdraw
+build 2026.01
+
+
+
+function setAmt(v, btn){
+document.getElementById('amount').value = v;
+document.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));
+btn.classList.add('active');
+}
+function genDeposit(){
+const amt = parseInt(document.getElementById('amount').value, 10);
+if (!amt || amt < 100) { alert("Enter at least 100 PSMP."); return; }
+if (amt > 1000000) { alert("Maximum 1,000,000 PSMP per ticket."); return; }
+const ref = 'DEP-' + Math.random().toString(36).slice(2,6).toUpperCase() + '-' + Math.random().toString(36).slice(2,6).toUpperCase();
+document.getElementById('deposit-command').innerText = /pay PowerFlipBot ${amt.toLocaleString('en-US').replace(/,/g,'')};
+document.getElementById('ticket-ref').innerText = ref;
+document.getElementById('deposit-stage').style.display = 'block';
+}
+function copyText(id, btn){
+const txt = document.getElementById(id).innerText;
+navigator.clipboard.writeText(txt);
+const orig = btn.innerHTML;
+btn.innerHTML = ' Copied';
+setTimeout(()=>{ btn.innerHTML = orig; }, 1400);
+}
+
+
