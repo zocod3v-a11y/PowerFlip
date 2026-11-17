@@ -66,7 +66,7 @@
     </aside>
 
     <main class="flex-1 flex flex-col min-w-0">
-
+        <header class="topbar">
             <div class="topbar-left">
                 <h1 id="page-title" class="page-title">Mines · Multiplier Challenge</h1>
                 <p class="page-sub">Pick safe tiles. Each step compounds your multiplier.</p>
@@ -77,7 +77,7 @@
                     <span class="balance-icon"><i class="fa-solid fa-coins"></i></span>
                     <div>
                         <p class="balance-label">Balance</p>
-                        <p class="balance-value" id="balance-display">— · <span class="balance-unit">DSMP</span></p>
+                        <p class="balance-value" id="balance-display">— · <span class="balance-unit">PSMP</span></p>
                     </div>
                 </div>
                 <a href="verify/index.html" class="ghost-btn">
@@ -86,16 +86,6 @@
                 </a>
             </div>
         </header>
-
-        <div class="ticker-bar" data-testid="recent-wins-ticker">
-            <div class="ticker-label">
-                <span class="ticker-dot"></span>
-                <span class="ticker-label-text">Live Wins</span>
-            </div>
-            <div class="ticker-viewport">
-                <div class="ticker-track" id="ticker-track"></div>
-            </div>
-        </div>
 
         <div class="content-wrap">
 
@@ -201,9 +191,6 @@
                         <div>
                             <label class="field-label">Bet Size</label>
                             <div class="field-wrap">
-                                <span class="field-prefix">$</span>
-                                <input type="number" placeholder="0.00" disabled class="field disabled">
-                            </div>
                             <div class="stat-box mt-4">
                                 <div class="stat-row"><span>Last Roll</span><span class="stat-val mono">—</span></div>
                             </div>
@@ -220,7 +207,7 @@
             </section>
 
             <footer class="page-footer">
-                <p>© 2026 Donut-Bet · Not affiliated with Mojang AB. 18+ play responsibly.</p>
+                <p>© 2026 PowerFlip · Not affiliated with Mojang AB. 18+ play responsibly.</p>
                 <div class="footer-links">
                     <a href="verify/index.html">Verify</a>
                     <a href="deposit/index.html">Deposit</a>
@@ -285,43 +272,6 @@
                 c.innerText = kind === 'green' ? '0' : (i+1);
                 strip.appendChild(c);
             }
-
-            // ===== Recent Wins Ticker =====
-            const igns = ['SteveCraft42','NetherKnight','CreeperDuke','PixelPirate','EmeraldFox','LavaBucket_','RedstoneRey','TNTbaker','BlazeRunner','EnderQueen','GlowSquid99','VoidWalker','PiglinPete','DiamondDani','NotchFan88','MossyCobble','SkeletonKey','PhantomVibe','GoldenApple_','SlimeJumpr'];
-            const games = [
-                {n:'Mines',    i:'fa-land-mine-on', c:'#f43f5e'},
-                {n:'Towers',   i:'fa-gopuram',      c:'#38bdf8'},
-                {n:'Dice',     i:'fa-dice',         c:'#10b981'},
-                {n:'Roulette', i:'fa-circle-dot',   c:'#f5b942'},
-            ];
-            const pick = a => a[Math.floor(Math.random()*a.length)];
-            const fmt  = n => n.toLocaleString('en-US');
-            function makeWin(){
-                const g = pick(games);
-                const ign = pick(igns);
-                const amt = [250, 480, 720, 1100, 1850, 3200, 5400, 8200, 12400, 18750, 27500, 41200, 68000, 95000][Math.floor(Math.random()*14)];
-                const mult = (Math.random()*9 + 1.1).toFixed(2);
-                return `<div class="ticker-item">
-                    <span class="ticker-game" style="color:${g.c}"><i class="fa-solid ${g.i}"></i> ${g.n}</span>
-                    <span class="ticker-user">${ign}</span>
-                    <span class="ticker-mult">${mult}×</span>
-                    <span class="ticker-amt">+${fmt(amt)} <span class="ticker-unit">DSMP</span></span>
-                </div>`;
-            }
-            const track = document.getElementById('ticker-track');
-            let html = '';
-            for (let i=0;i<14;i++) html += makeWin();
-            track.innerHTML = html + html;
-
-            setInterval(()=>{
-                const fresh = makeWin();
-                track.insertAdjacentHTML('beforeend', fresh);
-                track.insertAdjacentHTML('beforeend', fresh);
-                if (track.children.length > 60) {
-                    track.removeChild(track.firstElementChild);
-                    track.removeChild(track.firstElementChild);
-                }
-            }, 6000);
         };
     </script>
 </body>
